@@ -16,12 +16,15 @@ class USSSchwarzenegger extends Ship{
         if(this.accuracy > Math.random()){
            
                 enemy.hull -= this.firepower
+                alert("You hit the Alien!")
             console.log("You hit the Alien!")
             if(enemy.hull <= 0){
                 enemy.alive = false
+                alert("The Alien has been killed")
                 console.log("The Alien has been killed!")
             }
         }else{
+            alert("You missed!")
             console.log("You missed!!")
         
     }
@@ -41,12 +44,15 @@ class Enemy extends Ship{
         attack(player){
             if(this.accuracy > Math.random()){
                 player.hull-=this.firepower
+                alert(`The enemy hit your ship! You have ${player.hull} hit points left.`)
                 console.log(`The enemy hit your ship! You have ${player.hull} hit points left.`)
                 if(player.hull <= 0){
                     player.alive = false
+                    alert("Your ship has been destroyed! Game Over!")
                     console.log("Your ship has been destroyed! Game Over!")
                 }
             }else{
+                alert("The Alien missed you this time!")
                 console.log("The Alien missed you this time!")
             }
             }
@@ -56,12 +62,7 @@ class Enemy extends Ship{
 
 let hero = new USSSchwarzenegger (5, 5, .7)
 let badGuy = new Enemy()
-//console.log(badGuy)
-//console.log(hero)
-//hero.attack(badGuy)
-//badGuy.attack(hero)
-//console.log(badGuy)
-//console.log(hero)
+
 
 let enemyFleet = []
 for (let i = 0; i <6; i++){
@@ -69,21 +70,64 @@ enemyFleet[i] = new Enemy()
 }
 
 
-function battle(player, eF){
-    for(i=0; i < eF.length; i++ ){
-        if(player.alive ==true){console.log('\n\n' + 'Battle #' + (i + 1) + '\n')}
+
+
+function continueBattle (){
+    let cont = prompt("Would you like to continue battling", "Yes or No")
+    if(cont.toLowerCase() === "yes"){
+        return true
+   
+    }else{
         
-        while(player.alive && eF[i].alive){
-            
-        player.attack(eF[i]);
-        if (eF[i].alive ==true)
-        {
-            eF[i].attack(player)
-        }
+        (cont.toLowerCase()==='no')
+            alert("You have run away like a little baby!")
+            return false
+
+
     }
 }
+
+
+
+
+
+function battle(player, eF){
+    for(i=0; i < eF.length; i++ ){
+       
+        
+        if(continueBattle()=== true){
+            
+            if(player.alive == true){alert('Battle #' + (i + 1))}
+            while(player.alive && eF[i].alive ){
+            
+            player.attack(eF[i]);
+            if (eF[i].alive ==true)
+            {
+                eF[i].attack(player)
+            }
+        }
+    }
+        else{ break}
+    }
+
+    }
+
+
+//let heroS = document.getElementById('playerStatus')
+//heroS.innerHTML = `Hull : ${hero.hull} <br> Firepower : ${hero.firepower} <br> Accuracy : ${hero.accuracy}`
+
+
+function fight(){
+    let start = prompt("Would you like to battle some aliens?","Yes or No")
+    if(start.toLowerCase()==='yes'){
+        battle(hero,enemyFleet)
+        }
+        else{ alert("You coward! Earth will be destroyed!")
+    }
+
+
 }
 
-battle(hero,enemyFleet)
 
-//prompt("Would you like to play?","Yes or No")
+fight()
+
