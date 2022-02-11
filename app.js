@@ -12,13 +12,13 @@ class USSSchwarzenegger extends Ship{
     super(hull, firepower, accuracy)
 
     }
-    attack(opp){
+    attack(enemy){
         if(this.accuracy > Math.random()){
            
-                opp.hull -= this.firepower
+                enemy.hull -= this.firepower
             console.log("You hit the Alien!")
-            if(opp.hull <= 0){
-                opp.alive = false
+            if(enemy.hull <= 0){
+                enemy.alive = false
                 console.log("The Alien has been killed!")
             }
         }else{
@@ -38,12 +38,12 @@ class Enemy extends Ship{
         this.accuracy = (Math.floor(Math.random() * 3) + 6) / 10
     }
     
-        attack(opp1){
+        attack(player){
             if(this.accuracy > Math.random()){
-                opp1.hull-=this.firepower
-                console.log(`The enemy hit your ship! You have ${opp1.hull} hit points left.`)
-                if(opp1.hull <= 0){
-                    opp1.alive = false
+                player.hull-=this.firepower
+                console.log(`The enemy hit your ship! You have ${player.hull} hit points left.`)
+                if(player.hull <= 0){
+                    player.alive = false
                     console.log("Your ship has been destroyed! Game Over!")
                 }
             }else{
