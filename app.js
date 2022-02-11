@@ -37,13 +37,14 @@ class Enemy extends Ship{
         this.firepower = Math.floor(Math.random() * 3) + 2
         this.accuracy = (Math.floor(Math.random() * 3) + 6) / 10
     }
+    
         attack(opp1){
             if(this.accuracy > Math.random()){
                 opp1.hull-=this.firepower
                 console.log(`The enemy hit your ship! You have ${opp1.hull} hit points left.`)
                 if(opp1.hull <= 0){
                     opp1.alive = false
-                    console.log("Your ship has been destroyed!")
+                    console.log("Your ship has been destroyed! Game Over!")
                 }
             }else{
                 console.log("The Alien missed you this time!")
@@ -53,7 +54,7 @@ class Enemy extends Ship{
 
 
 
-let hero = new USSSchwarzenegger (10, 5, .7)
+let hero = new USSSchwarzenegger (5, 5, .7)
 let badGuy = new Enemy()
 //console.log(badGuy)
 //console.log(hero)
@@ -84,3 +85,5 @@ function battle(player, eF){
 }
 
 battle(hero,enemyFleet)
+
+//prompt("Would you like to play?","Yes or No")
