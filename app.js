@@ -65,7 +65,7 @@ let badGuy = new Enemy()
 
 
 let enemyFleet = []
-for (let i = 0; i <6; i++){
+for (let i = 0; i <Math.floor(Math.random()*5)+6; i++){
 enemyFleet[i] = new Enemy()
 }
 
@@ -74,7 +74,7 @@ enemyFleet[i] = new Enemy()
 
 function continueBattle (){
   
-    let cont = prompt("Would you like to continue battling?", "Yes or No")
+    let cont = prompt(`Should we battle? Your hull strength is at ${hero.hull}`, "Yes or No")
     if(cont.toLowerCase() === "yes"){
         return true
    
@@ -129,6 +129,8 @@ function battle(player, eF){
 fight()
 
 
-//let heroS = document.querySelector('#playerStatus')
-//heroS.innerHTML = `Hull : ${hero.hull} <br> Firepower : ${hero.firepower} <br> Accuracy : ${hero.accuracy}`
-//heroS.innerHTML = "somejldkjdsf"
+let heroS = document.querySelector('#playerStatus')
+heroS.innerHTML = `Hull : ${hero.hull} <br> Firepower : ${hero.firepower} <br> Accuracy : ${hero.accuracy}`
+
+let enemyS = document.querySelector('#enemyStatus')
+enemyS.innerHTML = `Hull : ${badGuy.hull} <br> Firepower : ${badGuy.firepower} <br> Accuracy : ${badGuy.accuracy}`
