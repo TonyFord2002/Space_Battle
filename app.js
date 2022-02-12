@@ -20,7 +20,7 @@ class USSSchwarzenegger extends Ship{
             console.log("You hit the Alien!")
             if(enemy.hull <= 0){
                 enemy.alive = false
-                alert("The Alien has been killed")
+                alert("The Alien has been killed!")
                 console.log("The Alien has been killed!")
             }
         }else{
@@ -60,7 +60,7 @@ class Enemy extends Ship{
 
 
 
-let hero = new USSSchwarzenegger (5, 5, .7)
+let hero = new USSSchwarzenegger (20, 5, .7)
 let badGuy = new Enemy()
 
 
@@ -73,18 +73,19 @@ enemyFleet[i] = new Enemy()
 
 
 function continueBattle (){
-    let cont = prompt("Would you like to continue battling", "Yes or No")
+  
+    let cont = prompt("Would you like to continue battling?", "Yes or No")
     if(cont.toLowerCase() === "yes"){
         return true
    
     }else{
         
         (cont.toLowerCase()==='no')
-            alert("You have run away like a little baby!")
+            alert("You have run away like a little baby! Earth will be ruined!")
             return false
 
-
     }
+  
 }
 
 
@@ -92,12 +93,12 @@ function continueBattle (){
 
 
 function battle(player, eF){
-    for(i=0; i < eF.length; i++ ){
+    for(let i=0; i < eF.length; i++ ){
        
-        
+        if(player.alive == true){alert('Battle #' + (i + 1))}
         if(continueBattle()=== true){
+        
             
-            if(player.alive == true){alert('Battle #' + (i + 1))}
             while(player.alive && eF[i].alive ){
             
             player.attack(eF[i]);
@@ -111,23 +112,23 @@ function battle(player, eF){
     }
 
     }
+    
 
-
-//let heroS = document.getElementById('playerStatus')
-//heroS.innerHTML = `Hull : ${hero.hull} <br> Firepower : ${hero.firepower} <br> Accuracy : ${hero.accuracy}`
-
-
-function fight(){
+    
+    
+    function fight(){
     let start = prompt("Would you like to battle some aliens?","Yes or No")
     if(start.toLowerCase()==='yes'){
         battle(hero,enemyFleet)
         }
         else{ alert("You coward! Earth will be destroyed!")
     }
-
-
 }
 
 
 fight()
 
+
+//let heroS = document.querySelector('#playerStatus')
+//heroS.innerHTML = `Hull : ${hero.hull} <br> Firepower : ${hero.firepower} <br> Accuracy : ${hero.accuracy}`
+//heroS.innerHTML = "somejldkjdsf"
